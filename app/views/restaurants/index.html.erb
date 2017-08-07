@@ -1,0 +1,6 @@
+<%= link_to "HOME", blah_path %>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li><%= link_to restaurant[:name], "/restaurants/#{restaurant[:name]}" %> (<%= restaurant[:address] %>)</li>
+  <% end %>
+</ul>
