@@ -1,15 +1,43 @@
 class RestaurantsController < ApplicationController
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
-  def index
-    food_type = params[:food_type]
+  def index  ## GET /restaurants
     @restaurants = Restaurant.all
   end
 
-  def show
-    @restaurant = Restaurant.all.find{|r| r[:name].downcase == params[:id].downcase}
+  def show ## Get /restaurants/2
+  end
+
+  def new ## GET /restaurants/new
+    @restaurant = Restaurant.new
   end
 
   def create
-    render plain: "Params: #{params.inspect}"
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.save
+    redirect_to restaurant_path(@restaurant)
+  end
+
+  def edit
+  end
+
+  def update
+    @restaurant.update(restaurant_params)
+    redirect_to restaurant_path(@restaurant)
+  end
+
+  def destroy
+    @restaurant.destroy
+    redirect_to restaurants_path
+  end
+
+  private
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :address)
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
   end
 end

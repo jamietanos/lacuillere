@@ -1,6 +1,7 @@
-<%= link_to "HOME", blah_path %>
-<ul>
-  <% @restaurants.each do |restaurant| %>
-    <li><%= link_to restaurant[:name], "/restaurants/#{restaurant[:name]}" %> (<%= restaurant[:address] %>)</li>
-  <% end %>
-</ul>
+<% @restaurants.each do |restaurant| %>
+  <h2><%= link_to restaurant.name, restaurants_path(restaurant) %></h2>
+  <p><%= restaurant.address %></p>
+  <%= link_to "Delete", restaurant_path(restaurant),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+<% end %>

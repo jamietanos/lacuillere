@@ -1,2 +1,20 @@
-<h1>Pages#about <%= @name %></h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<button id="clock">Click Me</button>
+<input type="text" name="time_to" id="time_to">
+<input type="hidden" name="time_to_click">
+<script>
+  var time = new Date("<%= DateTime.now  %>")
+
+  $(document).ready(function(e) {
+    $("#clock").on('click', function() {
+console.log(new Date() - time)
+     $()
+    })
+  })
+</script>
+
+<form action="">
+  <input type="text" name="shown_1">
+  <input type="hidden" name="hidden_2" >
+  <input type="text" name="shown_3">
+  <input type="submit">
+</form>
